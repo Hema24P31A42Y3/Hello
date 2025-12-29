@@ -1,0 +1,2 @@
+info = ("Alice", 14, "Student")
+print(info)
