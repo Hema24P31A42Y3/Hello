@@ -1,0 +1,26 @@
+def twos_complement(binary):
+    # Step 1: 1's complement
+    ones = ""
+    for bit in binary:
+        if bit == '0':
+            ones += '1'
+        else:
+            ones += '0'
+
+    # Step 2: Add 1 to 1's complement
+    twos = list(ones)
+    carry = 1
+
+    for i in range(len(twos) - 1, -1, -1):
+        if twos[i] == '1' and carry == 1:
+            twos[i] = '0'
+            carry = 1
+        elif twos[i] == '0' and carry == 1:
+            twos[i] = '1'
+            carry = 0
+
+    return "".join(twos)
+
+
+binary = input("Enter a binary number: ")
+print("2's Complement:", twos_complement(binary))
