@@ -1,0 +1,6 @@
+number=int(input())
+p=100
+t=2
+r=2
+SI=p*t*r/100
+print(SI)
