@@ -1,0 +1,26 @@
+def nested_lists():
+    # Read the number of students
+    N = int(input())
+    
+    # Create a nested list to store [name, score]
+    records = []
+    for _ in range(N):
+        name = input().strip()
+        score = float(input().strip())
+        records.append([name, score])
+    
+    # Get unique scores and sort them
+    scores = sorted(set(score for name, score in records))
+    
+    # Find the second lowest score
+    second_lowest = scores[1]
+    
+    # Collect names with the second lowest score
+    names = sorted(name for name, score in records if score == second_lowest)
+    
+    # Print each name on a new line
+    for name in names:
+        print(name)
+
+if __name__ == "__main__":
+    nested_lists()
