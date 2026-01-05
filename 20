@@ -1,0 +1,8 @@
+username=hema
+password=hema123
+user_name=string(input('enter the name'))
+user_password=string(input('enter the password'))
+if username==user_name and password==user_password:
+    print(true)
+else:
+    print(false)
