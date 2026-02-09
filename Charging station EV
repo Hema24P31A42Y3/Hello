@@ -1,0 +1,62 @@
+# EV Load Forecasting using a simple Transformer (Autoformer-style idea)
+
+import torch
+import torch.nn as nn
+import numpy as np
+
+# ----- Create dummy EV load time-series data -----
+# (In real case, use EV charging dataset)
+time_steps = 500
+data = np.sin(np.arange(time_steps) * 0.05) + np.random.normal(0, 0.1, time_steps)
+data = data.reshape(-1, 1)
+
+# ----- Prepare sequences -----
+def create_sequences(data, seq_len=30):
+    X, y = [], []
+    for i in range(len(data) - seq_len):
+        X.append(data[i:i+seq_len])
+        y.append(data[i+seq_len])
+    return torch.tensor(X, dtype=torch.float32), torch.tensor(y, dtype=torch.float32)
+
+seq_len = 30
+X, y = create_sequences(data, seq_len)
+
+# ----- Transformer Model (Autoformer style simplified) -----
+class SimpleTransformer(nn.Module):
+    def __init__(self, input_dim=1, d_model=32, nhead=4, num_layers=2):
+        super().__init__()
+        self.embedding = nn.Linear(input_dim, d_model)
+        encoder_layer = nn.TransformerEncoderLayer(d_model=d_model, nhead=nhead)
+        self.transformer = nn.TransformerEncoder(encoder_layer, num_layers=num_layers)
+        self.fc = nn.Linear(d_model, 1)
+
+    def forward(self, x):
+        x = self.embedding(x)          # (batch, seq, d_model)
+        x = x.permute(1, 0, 2)        # (seq, batch, d_model)
+        x = self.transformer(x)
+        x = x[-1]                     # last time step
+        out = self.fc(x)
+        return out
+
+# ----- Model, Loss, Optimizer -----
+model = SimpleTransformer()
+criterion = nn.MSELoss()
+optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
+
+# ----- Training -----
+epochs = 50
+for epoch in range(epochs):
+    optimizer.zero_grad()
+    output = model(X)
+    loss = criterion(output, y)
+    loss.backward()
+    optimizer.step()
+
+    if (epoch+1) % 10 == 0:
+        print(f"Epoch [{epoch+1}/{epochs}], Loss: {loss.item():.4f}")
+
+# ----- Prediction -----
+with torch.no_grad():
+    sample = X[0].unsqueeze(0)
+    prediction = model(sample)
+    print("Predicted EV load:", prediction.item())
