@@ -1,0 +1,15 @@
+def even_odd(lst):
+    even = []
+    odd = []
+    for i in lst:
+        if i % 2 == 0:
+            even.append(i)
+        else:
+            odd.append(i)
+    return even, odd
+
+numbers = list(map(int, input("Enter numbers: ").split()))
+e, o = even_odd(numbers)
+
+print("Even:", e)
+print("Odd:", o)
