@@ -1,0 +1,18 @@
+def fibonacci_tabulation(n):
+    if n <= 1:
+        return n
+    # Create a list/array dp of size n+1 initialized with zeros
+    dp = [0] * (n + 1)
+    dp[0] = 0
+    dp[1] = 1
+    
+    # Fill the table iteratively
+    for i in range(2, n + 1):
+        dp[i] = dp[i - 1] + dp[i - 2]
+        
+    return dp[n]
+
+# Example usage
+n = 10
+print("Fibonacci number at position", n, ":", fibonacci_tabulation(n)) # Output: 55
+
