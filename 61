@@ -1,0 +1,9 @@
+class Student:
+    name = "Ram"
+    age = 20
+
+# create object
+s1 = Student()
+
+print(s1.name)
+print(s1.age)
