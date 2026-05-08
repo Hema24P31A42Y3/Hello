@@ -1,0 +1,57 @@
+# Python Program using Class and Object
+
+class Student:
+    
+    # Constructor
+    def __init__(self, name, rollno, branch, marks):
+        self.name = name
+        self.rollno = rollno
+        self.branch = branch
+        self.marks = marks
+
+    # Method to display student details
+    def display_details(self):
+        print("------ Student Details ------")
+        print("Name    :", self.name)
+        print("Roll No :", self.rollno)
+        print("Branch  :", self.branch)
+        print("Marks   :", self.marks)
+
+    # Method to calculate grade
+    def calculate_grade(self):
+        if self.marks >= 90:
+            grade = "A+"
+        elif self.marks >= 75:
+            grade = "A"
+        elif self.marks >= 60:
+            grade = "B"
+        elif self.marks >= 50:
+            grade = "C"
+        else:
+            grade = "Fail"
+
+        print("Grade   :", grade)
+
+    # Method to check pass/fail
+    def result(self):
+        if self.marks >= 50:
+            print("Result  : Pass")
+        else:
+            print("Result  : Fail")
+
+
+# Creating Objects
+student1 = Student("Ravi", 101, "CSE", 85)
+student2 = Student("Priya", 102, "ECE", 45)
+
+# Displaying Details of Student 1
+print("\nStudent 1 Information")
+student1.display_details()
+student1.calculate_grade()
+student1.result()
+
+# Displaying Details of Student 2
+print("\nStudent 2 Information")
+student2.display_details()
+student2.calculate_grade()
+student2.result()
