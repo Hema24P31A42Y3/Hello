@@ -1,0 +1,32 @@
+# Python Object Oriented Programming - Medium Level Example
+
+class Student:
+    college = "ABC College"      # Class Variable
+
+    def __init__(self, name, marks):
+        self.name = name         # Instance Variable
+        self.marks = marks
+
+    def display(self):
+        print("Student Name:", self.name)
+        print("Student Marks:", self.marks)
+
+    def result(self):
+        if self.marks >= 35:
+            print(self.name, "Passed")
+        else:
+            print(self.name, "Failed")
+
+
+# Creating Objects
+s1 = Student("Ravi", 78)
+s2 = Student("Sita", 28)
+
+# Accessing Methods
+s1.display()
+s1.result()
+
+print()
+
+s2.display()
+s2.result()
