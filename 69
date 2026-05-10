@@ -1,0 +1,20 @@
+# Python Object Example
+
+class Student:
+    
+    # Constructor
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    # Method
+    def display(self):
+        print("Student Name:", self.name)
+        print("Student Age :", self.age)
+
+
+# Creating Object
+s1 = Student("Hema", 20)
+
+# Calling Method using Object
+s1.display()
