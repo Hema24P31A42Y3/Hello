@@ -1,0 +1,16 @@
+# Oops concept in Python
+
+class Student:
+    def __init__(self, name, marks):
+        self.name = name
+        self.marks = marks
+
+    def display(self):
+        print("Name:", self.name)
+        print("Marks:", self.marks)
+
+# Object creation
+s1 = Student("Hema", 95)
+
+# Method call
+s1.display()
