@@ -1,0 +1,24 @@
+# Multilevel Inheritance in Python
+
+class Grandfather:
+    def house(self):
+        print("Grandfather owns a house")
+
+
+class Father(Grandfather):
+    def bike(self):
+        print("Father owns a bike")
+
+
+class Son(Father):
+    def laptop(self):
+        print("Son owns a laptop")
+
+
+# Object creation
+s = Son()
+
+# Accessing all methods
+s.house()
+s.bike()
+s.laptop()
