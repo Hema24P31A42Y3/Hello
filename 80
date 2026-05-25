@@ -1,0 +1,30 @@
+# Encapsulation in Python
+
+class Student:
+    def __init__(self, name, marks):
+        self.name = name          # public variable
+        self.__marks = marks      # private variable
+
+    # getter method
+    def get_marks(self):
+        return self.__marks
+
+    # setter method
+    def set_marks(self, marks):
+        if marks >= 0:
+            self.__marks = marks
+        else:
+            print("Invalid marks")
+
+# object creation
+s1 = Student("Hema", 85)
+
+print("Name:", s1.name)
+
+# accessing private variable using getter
+print("Marks:", s1.get_marks())
+
+# updating value using setter
+s1.set_marks(95)
+
+print("Updated Marks:", s1.get_marks())
